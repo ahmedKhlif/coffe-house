@@ -68,15 +68,15 @@
 <form method="post" action="user_registration_script.php">
    <a href="#" class="logo mr-auto"> <i class="fas fa-mug-hot"></i> coffee </a>
    <h3>let's start a new great day SIGN UP</h3>
-   <input type="text" class="form-control" name="name" placeholder="Name" required="true">
-   <input type="email" class="form-control" name="email" placeholder="Email" required="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-   <input type="password" class="form-control" name="password" placeholder="Password(min. 6 characters)" required="true" pattern=".{6,}">
-   <input type="tel" class="form-control" name="contact" placeholder="Contact" required="true">
-   <input type="text" class="form-control" name="city" placeholder="City" required="true">
-   <input type="text" class="form-control" name="address" placeholder="Address" required="true">
+   <input type="text"  name="name" placeholder="Name" required="true"  class="box">
+   <input type="email"  name="email" placeholder="Email" required="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  class="box">
+   <input type="password"  name="password" placeholder="Password(min. 6 characters)" required="true" pattern=".{6,}" class="box">
+   <input type="tel"  name="contact" placeholder="Contact" required="true" class="box">
+   <input type="text"  name="city" placeholder="City" required="true"  class="box">
+   <input type="text"  name="address" placeholder="Address" required="true"  class="box">
 
    <div class="flex">
-      <input type="checkbox" name="" id="remember-me">
+      <input type="checkbox" name="" id="remember-me"  >
       <label for="remember-me">Confirme?</label>
       <br/>
       <center>

@@ -40,7 +40,7 @@ if (!preg_match($regex_email, $email)) {
             if ($_SESSION['role'] == 'admin') {
                 header("Location: /projaa/admin");
             } else {
-                header("Location: /projaa/index.php");
+                header("Location: /projaa/profile.php");
             }
             exit();
         }

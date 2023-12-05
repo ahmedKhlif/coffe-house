@@ -15,22 +15,24 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'admin') {
 <html lang="en">
 
 <head>
+<head>
 <link rel="shortcut icon" href="images/coffee.png" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
     <!-- Font Awesome CDN link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Custom CSS file link -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <script defer src="script.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- xlsx library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
   <style>
           header {
             background-color:#512a10;
@@ -232,33 +234,53 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'admin') {
       font-size: 13px;
     }
   </style>
-  <script>
-    $(document).ready(function() {
-      $('[data-toggle="tooltip"]').tooltip();
-    });
-  </script>
+ <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Enable table export
+            $("#exportBtn").on('click', function () {
+                exportToExcel();
+            });
+
+            function exportToExcel() {
+                const table = document.getElementById('userTable');
+                const ws = XLSX.utils.table_to_sheet(table);
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+                XLSX.writeFile(wb, 'user_data.xlsx');
+            }
+        });
+    </script>
 </head>
+
 <body>
-      
-           <?php
-            require 'header.php';
-           ?>
-<body>
-  <div class="container-xl">
-    <div class="table-responsive">
-      <div class="table-wrapper">
-        <div class="table-title">
-          <div class="row">
-            <div class="col-sm-5">
-              <h2>User <b>Management</b></h2>
-            </div>
-            <div class="col-sm-7">
-              <!-- Add New User and Export to Excel buttons -->
-              <!-- ... -->
-            </div>
+
+    <?php
+    require 'header.php';
+    ?>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2>User <b>Management</b></h2>
+                        </div>
+                        <div class="col-sm-7">
+                            <!-- Add New User and Export to Excel buttons -->
+                            <button class="btn btn-success" id="exportBtn">Export to Excel</button>
+                        </div>
           </div>
         </div>
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" id="userTable">
           <thead>
             <tr>
               <th>#</th>
@@ -341,6 +363,22 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'admin') {
                 </p>
             </div>
         </footer>
+        <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Enable table export
+            $("#userTable").tableExport({
+                formats: ["xlsx"],
+                fileName: "user_data",
+                bootstrap: false,
+                position: "top",
+                ignoreRows: null,
+                ignoreCols: null,
+                ignoreCSS: ".tableexport-ignore",
+            });
+        });
+    </script>
 </body>
 
 </html>

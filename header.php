@@ -19,10 +19,12 @@
             <?php
             if(isset($_SESSION['email'])) {
             ?>
-            <a class="nav7" href="details.php">Setings</a>            
+            <a class="nav7" href="details.php">orders</a>            
 
                <a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
+               <a href="profile.php"><span class="glyphicon glyphicon-log-out"></span>Setings</a>
                <a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+
             <?php
             } else {
             ?>

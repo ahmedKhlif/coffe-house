@@ -83,6 +83,12 @@
         <?php
         require 'header.php';
         ?>
+        <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
         <div class="container mt-5 custom-margin-top">
             <h2>User Details</h2>
             <hr>

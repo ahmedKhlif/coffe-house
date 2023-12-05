@@ -11,6 +11,7 @@
             <?php
                if(isset($_SESSION['email'])){
             ?>
+            <a href="../profile.php"><span class="glyphicon glyphicon-log-out"></span> Setings</a>
             <a href="../logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
             <?php
                }
